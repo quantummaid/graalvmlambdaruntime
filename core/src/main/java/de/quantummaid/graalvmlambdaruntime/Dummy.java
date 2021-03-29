@@ -21,6 +21,7 @@
 
 package de.quantummaid.graalvmlambdaruntime;
 
+@SuppressWarnings("java:S2094")
 public final class Dummy {
     // in order to trigger javadoc
 }
