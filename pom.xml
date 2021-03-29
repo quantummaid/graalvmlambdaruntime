@@ -143,6 +143,28 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>4.0.rc2</version>
+                <configuration>
+                    <header>copyright/Copyright-Header.txt</header>
+                    <properties>
+                        <license.year>2021</license.year>
+                    </properties>
+                    <includes>
+                        <include>**/*.kt</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

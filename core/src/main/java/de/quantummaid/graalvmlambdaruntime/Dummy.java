@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2021 Richard Hauswald - https://quantummaid.de/.
+/*
+ * Copyright (c) 2020 Richard Hauswald - https://quantummaid.de/.
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -9,7 +9,7 @@
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
  *
- *    http://www.apache.org/licenses/LICENSE-2.0
+ *   http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
@@ -18,16 +18,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package de.quantummaid.graalvmlambdaruntime.http
 
-import java.net.HttpURLConnection
+package de.quantummaid.graalvmlambdaruntime;
 
-fun HttpURLConnection.connectionSettingsAsMap(): Array<Pair<String, String>> {
-    return arrayOf(
-        "url" to url.toString(),
-        "requestMethod" to requestMethod.toString(),
-        "useCaches" to useCaches.toString(),
-        "connectTimeout" to connectTimeout.toString(),
-        "readTimeout" to readTimeout.toString(),
-    )
+public final class Dummy {
+    // in order to trigger javadoc
 }
