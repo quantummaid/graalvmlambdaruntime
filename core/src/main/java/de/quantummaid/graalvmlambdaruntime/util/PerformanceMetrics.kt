@@ -1,6 +1,5 @@
 package de.quantummaid.graalvmlambdaruntime.util
 
-import de.quantummaid.graalvmlambdaruntime.StopWatch
 import mu.KotlinLogging
 
 private val baseLogger = KotlinLogging.logger { }
@@ -63,5 +62,6 @@ private class PerformanceMetricsNoop : PerformanceMetrics {
     }
 
     override fun close() {
+        // do nothing
     }
 }

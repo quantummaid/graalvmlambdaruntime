@@ -1,4 +1,4 @@
-package de.quantummaid.graalvmlambdaruntime
+package de.quantummaid.graalvmlambdaruntime.util
 
 internal interface StopWatch {
     fun start(topic: String)
@@ -25,9 +25,11 @@ internal interface StopWatch {
 
 private object NoopStopWatch : StopWatch {
     override fun start(topic: String) {
+        // do nothing
     }
 
     override fun stop(topic: String) {
+        // do nothing
     }
 
     override fun <T> timedCall(

@@ -13,6 +13,28 @@
     <version>0.0.1</version>
     <packaging>pom</packaging>
 
+    <name>GraalVmLambdaRuntime</name>
+    <description>
+        General-purpose GraalVM AWS Lambda runtime
+    </description>
+    <url>https://github.com/quantummaid/mapmaid</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Richard Hauswald</name>
+            <email>richard.hauswald@quantummaid.de</email>
+            <organization>Richard Hauswald</organization>
+            <organizationUrl>http://www.quantummaid.de</organizationUrl>
+        </developer>
+    </developers>
+
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
