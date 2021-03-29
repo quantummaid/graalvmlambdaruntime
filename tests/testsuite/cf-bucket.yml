@@ -1,0 +1,19 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "GraalVM Lambda Runtime Bucket"
+
+Parameters:
+  StackIdentifier:
+    Type: String
+    Description: "Unique string to identify the stack"
+
+Resources:
+  RemoteSpecsArtifactBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      AccessControl: Private
+      BucketName: !Ref StackIdentifier
+      LifecycleConfiguration:
+        Rules:
+          - Status: Enabled
+            ExpirationInDays: 7

@@ -1,0 +1,12 @@
+# Idea files to ignore
+.idea/
+*.iml
+*.ipr
+
+# Others
+.envrc
+
+target/
+
+native-libs/
+reports

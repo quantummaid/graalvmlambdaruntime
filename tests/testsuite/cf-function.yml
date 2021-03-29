@@ -1,0 +1,55 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: "GraalVM Lambda Runtime"
+
+Parameters:
+  StackIdentifier:
+    Type: String
+    Description: "Unique string to identify the stack"
+
+  Bucket:
+    Type: String
+
+  BucketKey:
+    Type: String
+
+Resources:
+  FunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${StackIdentifier}"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: "FunctionRolePolicy"
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Action:
+                  - 'sts:*'
+                  - 'dynamodb:*'
+                  - 'logs:*'
+                  - 'execute-api:*'
+                  - 'lambda:*'
+                Resource: '*'
+                Effect: Allow
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action:
+              - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+
+  Function:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${StackIdentifier}"
+      Runtime: provided
+      Handler: "x"
+      Code:
+        S3Bucket: !Sub "${Bucket}"
+        S3Key: !Sub "${BucketKey}"
+      Role: !GetAtt FunctionRole.Arn
