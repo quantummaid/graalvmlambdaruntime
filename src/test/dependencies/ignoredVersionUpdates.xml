@@ -7,5 +7,10 @@
         </ignoreVersion>
     </ignoreVersions>
     <rules>
+        <rule groupId="com.mycila" comparisonMethod="maven-surefire-plugin">
+            <ignoreVersions>
+                <ignoreVersion>4.0</ignoreVersion>
+            </ignoreVersions>
+        </rule>
     </rules>
 </ruleset>
