@@ -10,7 +10,7 @@
 
     <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <packaging>pom</packaging>
 
     <name>GraalVmLambdaRuntime</name>
@@ -38,7 +38,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <kotlin.version>1.4.32</kotlin.version>
+        <kotlin.version>1.5.0</kotlin.version>
         <plugin-update-file-checksum>7b8101b685be30c5d1abef25892b7b45</plugin-update-file-checksum>
     </properties>
 

@@ -5,17 +5,26 @@
     <parent>
         <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
         <artifactId>tests-parent</artifactId>
-        <version>0.0.2</version>
+        <version>0.0.3</version>
     </parent>
 
     <artifactId>testlambda</artifactId>
 
     <properties>
         <skipgraal>false</skipgraal>
-        <dependency-update-file-checksum>a949b51c3f94b8f3e02a109cd954d9a5</dependency-update-file-checksum>
+        <dependency-update-file-checksum>42f33b16b7099885cd5becc23c104f35</dependency-update-file-checksum>
         <plugin-update-file-checksum>915baffd77985e9da0d3cfee67e149eb</plugin-update-file-checksum>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
