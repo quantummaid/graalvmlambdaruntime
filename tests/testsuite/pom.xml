@@ -11,6 +11,8 @@
     <artifactId>testsuite</artifactId>
 
     <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>../../coverage/target/site/jacoco-aggregate/jacoco.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
         <dependency-update-file-checksum>42f33b16b7099885cd5becc23c104f35</dependency-update-file-checksum>
     </properties>
 
