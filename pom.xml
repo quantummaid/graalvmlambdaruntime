@@ -5,12 +5,12 @@
     <parent>
         <groupId>de.quantummaid</groupId>
         <artifactId>quantummaid-opensource-parent</artifactId>
-        <version>0.9.79</version>
+        <version>0.9.80</version>
     </parent>
 
     <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <packaging>pom</packaging>
 
     <name>GraalVmLambdaRuntime</name>
