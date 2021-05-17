@@ -21,6 +21,7 @@
 package de.quantummaid.graalvmlambdaruntime.givenwhenthen
 
 import de.quantummaid.graalvmlambdaruntime.GraalVmLambdaRuntime
+import de.quantummaid.graalvmlambdaruntime.GraalVmLambdaRuntime.Companion.startGraalVmLambdaRuntime
 import de.quantummaid.graalvmlambdaruntime.GraalVmLambdaRuntimeSpecs
 import de.quantummaid.graalvmlambdaruntime.LambdaHandler
 import de.quantummaid.graalvmlambdaruntime.LocalLambdaRuntimeConfiguration
@@ -50,8 +51,8 @@ interface LambdaRuntimeExecutor {
 
 class KotlinLambdaRuntimeExecutor : LambdaRuntimeExecutor {
     override fun execute(port: Int) {
-        val graalVmLambdaRuntime = GraalVmLambdaRuntime(LocalLambdaRuntimeConfiguration(port))
-        Thread { graalVmLambdaRuntime.start(LambdaHandler(::handle)) }.start()
+        val configuration = LocalLambdaRuntimeConfiguration(port)
+        Thread { startGraalVmLambdaRuntime(configuration, true, LambdaHandler(::handle)) }.start()
     }
 }
 

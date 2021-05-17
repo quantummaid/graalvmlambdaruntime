@@ -48,7 +48,7 @@ fun main(args: Array<String>) {
         val port = Integer.parseInt(args[0])
         LocalLambdaRuntimeConfiguration(port)
     }
-    startGraalVmLambdaRuntime(configuration) {
+    startGraalVmLambdaRuntime(configuration, true) {
         mapOf(
                 "firstName" to "Hans",
                 "lastName" to "Wurst"
