@@ -29,17 +29,17 @@ import kotlin.system.exitProcess
 
 private val baseLogger = KotlinLogging.logger { }
 
-class GraalVmLambdaRuntime(val configuration: LambdaRuntimeConfiguration) {
+class GraalVmLambdaRuntime(private val configuration: LambdaRuntimeConfiguration) {
 
-    fun start(handler: LambdaHandler) {
+    fun start(enablePerformanceMetrics: Boolean, handler: LambdaHandler) {
         val environmentVariables = configuration.environmentVariables()
         val marshallerAndUnmarshaller = configuration.marshallerAndUnmarshaller()
         val logger = StructuralLogger(marshallerAndUnmarshaller)
 
         logger.debugLogMap(baseLogger) {
             mapOf(
-                    "Message" to "Main entered in environment",
-                    "Environment" to environmentVariables.environmentVariableMap
+                "Message" to "Main entered in environment",
+                "Environment" to environmentVariables.environmentVariableMap
             )
         }
 
@@ -47,15 +47,22 @@ class GraalVmLambdaRuntime(val configuration: LambdaRuntimeConfiguration) {
 
         try {
             while (true) {
-                PerformanceMetrics.startMetering("Lambda Invocation", logger).use { invocationMetrics ->
-                    val nextInvocation = NextInvocation.nextInvocation(nextInvocationUrl, invocationMetrics, logger)
-                    val event = nextInvocation.payload
+                PerformanceMetrics.startMetering("Lambda Invocation", logger, enablePerformanceMetrics)
+                    .use { invocationMetrics ->
+                        val nextInvocation = NextInvocation.nextInvocation(nextInvocationUrl, invocationMetrics, logger)
+                        val event = nextInvocation.payload
                             ?.let { marshallerAndUnmarshaller.unmarshal(it) }
                             ?: emptyMap()
-                    val response = handler.handle(event)
-                    val responsePayload = marshallerAndUnmarshaller.marshal(response)
-                    RespondToInvocation.respond(nextInvocation, configuration, invocationMetrics, logger, responsePayload)
-                }
+                        val response = handler.handle(event)
+                        val responsePayload = marshallerAndUnmarshaller.marshal(response)
+                        RespondToInvocation.respond(
+                            nextInvocation,
+                            configuration,
+                            invocationMetrics,
+                            logger,
+                            responsePayload
+                        )
+                    }
             }
         } catch (e: LambdaEnvironmentTainted) {
             logger.errorLogMap(baseLogger) { e.errorDetails }
@@ -67,15 +74,23 @@ class GraalVmLambdaRuntime(val configuration: LambdaRuntimeConfiguration) {
     companion object {
         @JvmStatic
         fun startGraalVmLambdaRuntime(lambdaHandler: LambdaHandler) {
-            val configuration = RealLambdaRuntimeConfiguration()
-            startGraalVmLambdaRuntime(configuration, lambdaHandler)
+            startGraalVmLambdaRuntime(false, lambdaHandler)
         }
 
         @JvmStatic
-        fun startGraalVmLambdaRuntime(configuration: LambdaRuntimeConfiguration,
-                                      lambdaHandler: LambdaHandler) {
+        fun startGraalVmLambdaRuntime(enablePerformanceMetrics: Boolean, lambdaHandler: LambdaHandler) {
+            val configuration = RealLambdaRuntimeConfiguration()
+            startGraalVmLambdaRuntime(configuration, enablePerformanceMetrics, lambdaHandler)
+        }
+
+        @JvmStatic
+        fun startGraalVmLambdaRuntime(
+            configuration: LambdaRuntimeConfiguration,
+            enablePerformanceMetrics: Boolean,
+            lambdaHandler: LambdaHandler
+        ) {
             val graalVmLambdaRuntime = GraalVmLambdaRuntime(configuration)
-            graalVmLambdaRuntime.start(lambdaHandler)
+            graalVmLambdaRuntime.start(enablePerformanceMetrics, lambdaHandler)
         }
     }
 }
@@ -94,13 +109,13 @@ class RealLambdaRuntimeConfiguration : LambdaRuntimeConfiguration {
     private val environmentVariables = LambdaEnvironmentVariables()
 
     private val nextInvocationUrl = URL(
-            "http://${environmentVariables.AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/next"
+        "http://${environmentVariables.AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/next"
     )
 
     override fun nextInvocationUrl() = nextInvocationUrl
 
     override fun responseUrl(requestId: String) = URL(
-            "http://${environmentVariables.AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/${requestId}/response"
+        "http://${environmentVariables.AWS_LAMBDA_RUNTIME_API}/2018-06-01/runtime/invocation/${requestId}/response"
     )
 
     override fun environmentVariables() = environmentVariables

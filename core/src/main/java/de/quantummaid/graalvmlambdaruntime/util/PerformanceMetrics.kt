@@ -20,14 +20,14 @@
  */
 package de.quantummaid.graalvmlambdaruntime.util
 
+import jdk.jfr.Enabled
 import mu.KotlinLogging
 
 private val baseLogger = KotlinLogging.logger { }
 
 interface PerformanceMetrics : AutoCloseable {
     companion object {
-        private val enabled = "true" == System.getenv("DeveloperModeEnabled")
-        fun startMetering(topic: String, logger: StructuralLogger): PerformanceMetrics {
+        fun startMetering(topic: String, logger: StructuralLogger, enabled: Boolean): PerformanceMetrics {
             return if (enabled) {
                 PerformanceMetricsImpl(topic, logger)
             } else {
