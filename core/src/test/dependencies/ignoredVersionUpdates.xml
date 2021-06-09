@@ -9,6 +9,8 @@
     <rules>
         <rule groupId="io.github.microutils" comparisonMethod="kotlin-logging">
             <ignoreVersions>
+                <ignoreVersion>2.0.8</ignoreVersion>
+                <ignoreVersion>2.0.7</ignoreVersion>
                 <ignoreVersion>2.0.6</ignoreVersion>
                 <ignoreVersion>2.0.5</ignoreVersion>
                 <ignoreVersion>2.0.4</ignoreVersion>
@@ -16,6 +18,11 @@
                 <ignoreVersion>2.0.2</ignoreVersion>
                 <ignoreVersion>2.0.1</ignoreVersion>
                 <ignoreVersion>2.0.0</ignoreVersion>
+            </ignoreVersions>
+        </rule>
+        <rule groupId="org.jetbrains.kotlin" comparisonMethod="maven">
+            <ignoreVersions>
+                <ignoreVersion type="regex">1\.5\..*</ignoreVersion>
             </ignoreVersions>
         </rule>
     </rules>
