@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
         <artifactId>parent</artifactId>
-        <version>0.0.10</version>
+        <version>0.0.11</version>
     </parent>
 
     <artifactId>core</artifactId>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>de.quantummaid.mapmaid.integrations</groupId>
             <artifactId>mapmaid-minimal-json</artifactId>
-            <version>0.10.15</version>
+            <version>0.10.17</version>
         </dependency>
         <dependency>
             <groupId>io.github.microutils</groupId>

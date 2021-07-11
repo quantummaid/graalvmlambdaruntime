@@ -20,10 +20,5 @@
                 <ignoreVersion>2.0.0</ignoreVersion>
             </ignoreVersions>
         </rule>
-        <rule groupId="org.jetbrains.kotlin" comparisonMethod="maven">
-            <ignoreVersions>
-                <ignoreVersion type="regex">1\.5\..*</ignoreVersion>
-            </ignoreVersions>
-        </rule>
     </rules>
 </ruleset>

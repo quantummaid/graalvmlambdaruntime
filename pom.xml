@@ -10,7 +10,7 @@
 
     <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.10</version>
+    <version>0.0.11</version>
     <packaging>pom</packaging>
 
     <name>GraalVmLambdaRuntime</name>
@@ -38,7 +38,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <kotlin.version>1.4.32</kotlin.version>
+        <kotlin.version>1.5.20</kotlin.version>
         <plugin-update-file-checksum>7b8101b685be30c5d1abef25892b7b45</plugin-update-file-checksum>
     </properties>
 
@@ -123,7 +123,7 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.2.3</version>
+                <version>4.3.0</version>
                 <configuration>
                     <includeTests>true</includeTests>
                     <trace>true</trace>
