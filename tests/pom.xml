@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.quantummaid.graalvmlambdaruntime</groupId>
         <artifactId>parent</artifactId>
-        <version>0.0.11</version>
+        <version>0.0.12</version>
     </parent>
 
     <artifactId>tests-parent</artifactId>

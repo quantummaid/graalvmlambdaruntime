@@ -9,6 +9,8 @@
     <rules>
         <rule groupId="io.github.microutils" comparisonMethod="kotlin-logging">
             <ignoreVersions>
+                <ignoreVersion>2.0.10</ignoreVersion>
+                <ignoreVersion>2.0.9</ignoreVersion>
                 <ignoreVersion>2.0.8</ignoreVersion>
                 <ignoreVersion>2.0.7</ignoreVersion>
                 <ignoreVersion>2.0.6</ignoreVersion>
